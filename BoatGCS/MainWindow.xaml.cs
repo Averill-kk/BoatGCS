@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
+using BoatGCS.Entities;
 
 namespace BoatGCS
 {
@@ -20,9 +22,25 @@ namespace BoatGCS
     /// </summary>
     public partial class MainWindow : Window
     {
+        GpsDataContext db;
         public MainWindow()
         {
             InitializeComponent();
+
+            db = new GpsDataContext();
+            db.GpsDatas.Load();
+            gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
+            this.Closing += MainWindow_Closing;
+        }
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            db.Dispose();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            db.GpsDatas.Load();
+            gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
         }
     }
 }
