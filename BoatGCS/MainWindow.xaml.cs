@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using BoatGCS.Entities;
+using Microsoft.Win32;
+using System.IO;
 
 namespace BoatGCS
 {
@@ -26,10 +28,10 @@ namespace BoatGCS
         public MainWindow()
         {
             InitializeComponent();
-
             db = new GpsDataContext();
-            db.GpsDatas.Load();
-            gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
+                db.GpsDatas.Load();
+                gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
+
             this.Closing += MainWindow_Closing;
         }
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -42,5 +44,23 @@ namespace BoatGCS
             db.GpsDatas.Load();
             gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sd = new SaveFileDialog();
+            sd.Filter = "RAL (*.ral)|*.ral";
+            if (sd.ShowDialog() == true)
+            {
+                using (var tw = new StreamWriter(sd.FileName, File.Exists(sd.FileName)))
+                {
+                    foreach (var temp in db.GpsDatas.Local)
+                    {
+                        string strContent = String.Format("RALLY	{0}	{1}	1	0	0	0",temp.Latitude,temp.Lontitude);
+                        tw.WriteLine(strContent);
+                    }
+                  
+                }
+            }
+            }
     }
 }
