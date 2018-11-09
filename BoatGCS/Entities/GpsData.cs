@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BoatGCS.Entities
 {
-    class GpsData
+    public class GpsData
     {
         public int Id { get; set; }
         public double Latitude { get; set; }

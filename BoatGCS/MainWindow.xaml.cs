@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using BoatGCS.Entities;
 using Microsoft.Win32;
+using BoatGCS.Utils;
 using System.IO;
 
 namespace BoatGCS
@@ -25,12 +26,14 @@ namespace BoatGCS
     public partial class MainWindow : Window
     {
         GpsDataContext db;
+
         public MainWindow()
         {
+
             InitializeComponent();
             db = new GpsDataContext();
-                db.GpsDatas.Load();
-                gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
+            db.GpsDatas.Load();
+            gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
 
             this.Closing += MainWindow_Closing;
         }
@@ -39,6 +42,21 @@ namespace BoatGCS
             db.Dispose();
         }
 
+        public void ChangeDataBaseContex(GpsDataContext contex)
+        {
+            db = contex;
+            db.GpsDatas.Load();
+        }
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var connectionWindow = new ConnectionWindow();
+            connectionWindow.Show();
+        }
+
+        private void Button_Click3(object sender, RoutedEventArgs e)
+        {
+            gpsDataGrid.ItemsSource = null;
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             db.GpsDatas.Load();

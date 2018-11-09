@@ -9,21 +9,14 @@ using System.Threading.Tasks;
 
 namespace BoatGCS.Entities
 {
-    class GpsDataContext : DbContext
+    public class GpsDataContext : DbContext
     {
-        public GpsDataContext(): base(CreateConnectionString())
+        public GpsDataContext(): base("DefaultConnection")
         {
 
         }
         public DbSet<GpsData> GpsDatas { get; set; }
 
-        static public string CreateConnectionString()
-        {
-            var entityConnectionStringBuilder = new EntityConnectionStringBuilder();
-            entityConnectionStringBuilder.Provider = "System.Data.SqlClient";
-            entityConnectionStringBuilder.ProviderConnectionString = ConnectionString.Current.Connection;
-            entityConnectionStringBuilder.Metadata = "res://*";
-            return entityConnectionStringBuilder.ToString();
-        }
+ 
     }
 }
