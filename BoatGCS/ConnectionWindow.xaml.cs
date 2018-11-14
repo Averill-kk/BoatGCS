@@ -35,9 +35,9 @@ namespace BoatGCS
         {
             var dbcontext = new GpsDataContext();
             dbcontext.ChangeDatabase(
-        initialCatalog: "GpsData",
-        dataSource: @".\sqlexpress" // could be ip address 120.273.435.167 etc
-    );
+                initialCatalog: "name-of-another-initialcatalog",
+                dataSource: @".\sqlexpress" // could be ip address 120.273.435.167 etc
+                );
             var mainWindow = new MainWindow();
             mainWindow.ChangeDataBaseContex(dbcontext);
             this.Close();
