@@ -21,9 +21,11 @@ namespace BoatGCS
     /// </summary>
     public partial class ConnectionWindow : Window
     {
+        GpsDataContext dbcontext = new GpsDataContext("null");
         public ConnectionWindow()
         {
             InitializeComponent();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,14 +35,32 @@ namespace BoatGCS
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var dbcontext = new GpsDataContext();
-            dbcontext.ChangeDatabase(
-                initialCatalog: "name-of-another-initialcatalog",
-                dataSource: @".\sqlexpress" // could be ip address 120.273.435.167 etc
-                );
+            
+
             var mainWindow = new MainWindow();
-            mainWindow.ChangeDataBaseContex(dbcontext);
-            this.Close();
+            string connectionString = String.Format("Data Source={0};Initial Catalog=GpsData;Integrated Security=True;Pooling=False",connectionAddressTextBox.Text);
+            try
+            {
+                dbcontext = new GpsDataContext(connectionString);
+                mainWindow.ChangeDataBaseContex(dbcontext);
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Ошибка подключения", "Ошибка подключения к базе данных, проверьте правильность написания IP-адреса",
+MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            //.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if(dbcontext.Database.Exists())
+            {
+                connectionLabel.Content = "Connection OK!";
+            }
+            else
+            {
+                connectionLabel.Content = "No Connection!";
+            }
         }
     }
 }

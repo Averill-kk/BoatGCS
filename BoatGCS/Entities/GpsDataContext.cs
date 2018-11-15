@@ -11,7 +11,7 @@ namespace BoatGCS.Entities
 {
     public class GpsDataContext : DbContext
     {
-        public GpsDataContext(): base("DefaultConnection")
+        public GpsDataContext(string nameOrConnectionString) : base(nameOrConnectionString)
         {
 
         }

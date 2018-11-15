@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BoatGCS"
         mc:Ignorable="d"
-        Title="FileImporter" Height="637.637" Width="519.252" Background="#FFE2E2E2">
+        Title="NavDataImporter" Height="637.637" Width="519.252" Background="#FFE2E2E2">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="45*"/>

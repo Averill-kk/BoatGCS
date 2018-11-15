@@ -31,7 +31,7 @@ namespace BoatGCS
         {
 
             InitializeComponent();
-            db = new GpsDataContext();
+            db = new GpsDataContext("Data Source=DESKTOP-M_POPOV\\SQLEXPRESS;Initial Catalog=GpsData;Integrated Security=True;Pooling=False");
             db.GpsDatas.Load();
             gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
 

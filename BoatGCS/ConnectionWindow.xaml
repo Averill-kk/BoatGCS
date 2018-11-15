@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BoatGCS"
         mc:Ignorable="d"
-        Title="Подключение к БД" Height="163.637" Width="382.992" Background="#FFE2E2E2">
+        Title="Подключение к БД" Height="214.637" Width="382.992" Background="#FFE2E2E2">
     <Grid>
         <Button Content="ОК" HorizontalAlignment="Left" Margin="35,81,0,0" VerticalAlignment="Top" Width="121" Height="35" Click="Button_Click_1"/>
         <Button Content="Отмена" HorizontalAlignment="Left" Margin="208,81,0,0" VerticalAlignment="Top" Width="121" Height="35" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="191,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+        <TextBox x:Name="connectionAddressTextBox" HorizontalAlignment="Left" Height="28" Margin="191,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
         <Label Content="IP-адрес или имя сервера" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
+        <Button Content="Test Connection" HorizontalAlignment="Left" Margin="35,138,0,0" VerticalAlignment="Top" Width="121" Click="Button_Click_2" Height="36"/>
+        <Label x:Name="connectionLabel" Content="Label" HorizontalAlignment="Left" Margin="208,143,0,0" VerticalAlignment="Top" Width="112"/>
 
     </Grid>
 </Window>
