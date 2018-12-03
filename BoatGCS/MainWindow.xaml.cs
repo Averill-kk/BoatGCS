@@ -53,16 +53,16 @@ namespace BoatGCS
             connectionWindow.Show();
         }
 
-        private void Button_Click3(object sender, RoutedEventArgs e)
-        {
-            gpsDataGrid.ItemsSource = null;
-        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             db.GpsDatas.Load();
             gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
         }
-
+        public void UpdateDataGrid()
+        {
+            db.GpsDatas.Load();
+            gpsDataGrid.ItemsSource = db.GpsDatas.Local.ToBindingList();
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             SaveFileDialog sd = new SaveFileDialog();

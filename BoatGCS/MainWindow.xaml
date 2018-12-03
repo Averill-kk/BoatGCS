@@ -39,7 +39,6 @@
                 <MenuItem Header="Подключении к БД" Click="MenuItem_Click"></MenuItem>
             </MenuItem>
         </Menu>
-        <Button Content="Очистить" HorizontalAlignment="Left" Margin="111,75,0,0" Grid.Row="2" VerticalAlignment="Top" Width="135" Height="29" Click="Button_Click3" Grid.Column="2"/>
 
     </Grid>
 

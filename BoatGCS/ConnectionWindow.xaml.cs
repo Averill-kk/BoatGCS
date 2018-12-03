@@ -43,24 +43,14 @@ namespace BoatGCS
             {
                 dbcontext = new GpsDataContext(connectionString);
                 mainWindow.ChangeDataBaseContex(dbcontext);
+                mainWindow.UpdateDataGrid();
             }
             catch (Exception ex) {
-                MessageBox.Show("Ошибка подключения", "Ошибка подключения к базе данных, проверьте правильность написания IP-адреса",
+                MessageBox.Show( "Ошибка подключения к базе данных, проверьте правильность написания IP-адреса", "Ошибка подключения",
 MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            //.Close();
+            this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            if(dbcontext.Database.Exists())
-            {
-                connectionLabel.Content = "Connection OK!";
-            }
-            else
-            {
-                connectionLabel.Content = "No Connection!";
-            }
-        }
     }
 }
